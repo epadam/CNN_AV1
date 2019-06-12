@@ -4,9 +4,13 @@ AV1 version:
 
 Process:
 the following source files are modified, 
+
 aomenc.c
+
 encode_frame.c
+
 aom_codec.h
+
 aom_codec_internal.h
 
 1. Replace it in the original AV1 source files and compile the encoder.
