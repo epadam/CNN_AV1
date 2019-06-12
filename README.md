@@ -2,8 +2,8 @@
 a CNN based AV1 encoder for intra frame encoding
 AV1 version:
 
-Process:
-the following source files are modifie:
+
+The following source files are modifie:
 
 aomenc.c
 
@@ -20,7 +20,7 @@ encoder.h
 encode_frame.c
 
 
-
+Process:
 1. Replace it in the original AV1 source files and compile the encoder.
 2. Add the python files in CNN folder to the same folder of built encoder
 
