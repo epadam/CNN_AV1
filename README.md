@@ -3,7 +3,7 @@ a CNN based AV1 encoder for intra frame encoding
 AV1 version:
 
 Process:
-the following source files are modified, 
+the following source files are modifie:
 
 aomenc.c
 
