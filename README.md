@@ -14,4 +14,4 @@ aom_codec_internal.h
 
 
 NOTE:
-Right now it only support 4:2:0 yuv format (y4m not support). 
+Right now it only supports 4:2:0 yuv format (y4m not support). 
