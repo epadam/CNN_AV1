@@ -7,11 +7,19 @@ the following source files are modifie:
 
 aomenc.c
 
-encode_frame.c
-
 aom_codec.h
 
 aom_codec_internal.h
+
+av1_cx_iface.c
+
+encoder.c
+
+encoder.h
+
+encode_frame.c
+
+
 
 1. Replace it in the original AV1 source files and compile the encoder.
 2. Add the python files in CNN folder to the same folder of built encoder
