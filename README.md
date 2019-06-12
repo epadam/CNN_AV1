@@ -1,5 +1,5 @@
 # CNN_AV1
-a CNN based AV1 encoder for intra frame encoding
+A CNN based AV1 encoder for intra frame encoding
 AV1 version:
 
 
