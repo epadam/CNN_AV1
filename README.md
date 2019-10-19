@@ -35,4 +35,4 @@ av1/encoder/encode_frame.c
 
 NOTE:
 1. Right now it only supports 4:2:0 yuv format (y4m not support) and resolution of 1080p and below. 
-2. For resolution of 1080p and above, encoder sometimes crash. This may be because of the violation of some predicted partition modes. This issue will be solved in the future.
+2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future.
