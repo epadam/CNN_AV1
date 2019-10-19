@@ -1,5 +1,5 @@
 # CNN_AV1
-A CNN based AV1 encoder for intra frame encoding
+A CNN based AV1 intra encoder
 
 Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
 
