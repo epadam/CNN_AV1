@@ -5,16 +5,16 @@ AV1 version: 1.0.0-2231-g9666276
 
 ## Usage 
 
-#### Clone AOM AV1 from the repo:
+1.  Clone AOM AV1 from the repo:
 
  `git clone https://aomedia.googlesource.com/aom`
 
-### Go to version 1.0.0-2231-g9666276:
+2.  Go to version 1.0.0-2231-g9666276:
 
  `git checkout 2231-g9666276`
 
 
-#### Replace following files:
+3.  Replace following files:
 
 aom/src/aom_codec.h
 
@@ -28,9 +28,9 @@ av1/av1_cx_iface.c
 
 av1/encoder/encode_frame.c
 
-### Build the encoder with cmake and make
+4.  Build the encoder with cmake and make
 
-### Include the files in CNN folder into the built encoder folder
+5.  Include the files in CNN folder into the built encoder folder
 
 
 NOTE:
