@@ -1,7 +1,7 @@
 # CNN_AV1
 A CNN based AV1 encoder for intra frame encoding
 
-Detailed description can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
+Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
 
 AV1 version: 1.0.0-2231-g9666276
 
@@ -37,4 +37,4 @@ av1/encoder/encode_frame.c
 
 NOTE:
 1. Right now it only supports 4:2:0 yuv format (y4m not support) and resolution of 1080p and below. 
-2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future.
+2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future. Also, python models will be ported into C with Tensorflow C API.
