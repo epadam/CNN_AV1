@@ -7,15 +7,11 @@ AV1 version: 1.0.0-2231-g9666276
 
 #### Clone AOM AV1 from the repo:
 
-::
-
- git clone https://aomedia.googlesource.com/aom
+ `git clone https://aomedia.googlesource.com/aom`
 
 ### Go to version 1.0.0-2231-g9666276:
 
-::
- 
-  git checkout 2231-g9666276
+ `git checkout 2231-g9666276`
 
 
 #### Replace following files:
