@@ -451,7 +451,9 @@ static const arg_def_t enable_1to4_partitions =
 static const arg_def_t min_partition_size =
     ARG_DEF(NULL, "min-partition-size", 4,
             "Set min partition size "
-            "(4:4x4, 8:8x8, 16:16x16, 32:32x32, 64:64x64, 128:128x128)");
+            "(4:4x4, 8:8x8, 16:16x16, 32:32x32, 64:64x64, 128:128x128)."
+            "On frame with 4k+ resolutions or higher speed settings, the min "
+            "partition size will have a minimum of 8.");
 static const arg_def_t max_partition_size =
     ARG_DEF(NULL, "max-partition-size", 128,
             "Set max partition size "
@@ -460,6 +462,10 @@ static const arg_def_t enable_dual_filter =
     ARG_DEF(NULL, "enable-dual-filter", 1,
             "Enable dual filter "
             "(0: false, 1: true (default))");
+static const arg_def_t enable_chroma_deltaq =
+    ARG_DEF(NULL, "enable-chroma-deltaq", 1,
+            "Enable chroma delta quant "
+            "(0: false (default), 1: true)");
 static const arg_def_t enable_intra_edge_filter =
     ARG_DEF(NULL, "enable-intra-edge-filter", 1,
             "Enable intra edge filtering "
@@ -536,6 +542,9 @@ static const arg_def_t enable_cfl_intra =
     ARG_DEF(NULL, "enable-cfl-intra", 1,
             "Enable chroma from luma intra prediction mode "
             "(0: false, 1: true (default))");
+static const arg_def_t force_video_mode =
+    ARG_DEF(NULL, "force-video-mode", 1,
+            "Force video mode (0: false, 1: true (default))");
 static const arg_def_t enable_obmc = ARG_DEF(
     NULL, "enable-obmc", 1, "Enable OBMC (0: false, 1: true (default))");
 static const arg_def_t enable_palette =
@@ -632,7 +641,7 @@ static const arg_def_t aq_mode = ARG_DEF(
     "3: cyclic refresh)");
 static const arg_def_t deltaq_mode =
     ARG_DEF(NULL, "deltaq-mode", 1,
-            "Delta qindex mode (0: off (default), 1: deltaq pred efficiency, "
+            "Delta qindex mode (0: off, 1: deltaq pred efficiency (default), "
             "2: deltaq perceptual)");
 static const arg_def_t deltalf_mode = ARG_DEF(
     NULL, "delta-lf-mode", 1, "Enable delta-lf-mode (0: off (default), 1: on)");
@@ -668,6 +677,11 @@ static const arg_def_t target_seq_level_idx =
             "xy: Target level index for the OP. "
             "E.g. \"0\" means target level index 0 for the 0th OP; "
             "\"1021\" means target level index 21 for the 10th OP.");
+static const arg_def_t set_min_cr =
+    ARG_DEF(NULL, "min-cr", 1,
+            "Set minimum compression ratio. Take integer values. Default is 0. "
+            "If non-zero, encoder will try to keep the compression ratio of "
+            "each frame to be higher than the given value divided by 100.");
 
 static const struct arg_enum_list color_primaries_enum[] = {
   { "bt709", AOM_CICP_CP_BT_709 },
@@ -803,6 +817,7 @@ static const arg_def_t *av1_args[] = { &cpu_used_av1,
                                        &min_partition_size,
                                        &max_partition_size,
                                        &enable_dual_filter,
+                                       &enable_chroma_deltaq,
                                        &enable_intra_edge_filter,
                                        &enable_order_hint,
                                        &enable_tx64,
@@ -822,6 +837,7 @@ static const arg_def_t *av1_args[] = { &cpu_used_av1,
                                        &enable_smooth_intra,
                                        &enable_paeth_intra,
                                        &enable_cfl_intra,
+                                       &force_video_mode,
                                        &enable_obmc,
                                        &enable_palette,
                                        &enable_intrabc,
@@ -871,6 +887,7 @@ static const arg_def_t *av1_args[] = { &cpu_used_av1,
                                        &enable_ref_frame_mvs,
                                        &target_seq_level_idx,
                                        &set_tier_mask,
+                                       &set_min_cr,
                                        &bitdeptharg,
                                        &inbitdeptharg,
                                        &input_chroma_subsampling_x,
@@ -903,6 +920,7 @@ static const int av1_arg_ctrl_map[] = { AOME_SET_CPUUSED,
                                         AV1E_SET_MIN_PARTITION_SIZE,
                                         AV1E_SET_MAX_PARTITION_SIZE,
                                         AV1E_SET_ENABLE_DUAL_FILTER,
+                                        AV1E_SET_ENABLE_CHROMA_DELTAQ,
                                         AV1E_SET_ENABLE_INTRA_EDGE_FILTER,
                                         AV1E_SET_ENABLE_ORDER_HINT,
                                         AV1E_SET_ENABLE_TX64,
@@ -922,6 +940,7 @@ static const int av1_arg_ctrl_map[] = { AOME_SET_CPUUSED,
                                         AV1E_SET_ENABLE_SMOOTH_INTRA,
                                         AV1E_SET_ENABLE_PAETH_INTRA,
                                         AV1E_SET_ENABLE_CFL_INTRA,
+                                        AV1E_SET_FORCE_VIDEO_MODE,
                                         AV1E_SET_ENABLE_OBMC,
                                         AV1E_SET_ENABLE_PALETTE,
                                         AV1E_SET_ENABLE_INTRABC,
@@ -971,6 +990,7 @@ static const int av1_arg_ctrl_map[] = { AOME_SET_CPUUSED,
                                         AV1E_SET_ENABLE_REF_FRAME_MVS,
                                         AV1E_SET_TARGET_SEQ_LEVEL_IDX,
                                         AV1E_SET_TIER_MASK,
+                                        AV1E_SET_MIN_CR,
                                         0 };
 #endif  // CONFIG_AV1_ENCODER
 
@@ -2203,12 +2223,11 @@ int main(int argc, const char **argv_) {
 
   /* Handle non-option arguments */
   input.filename = argv[0];
-   
+
   if (!input.filename) {
     fprintf(stderr, "No input file specified!\n");
     usage_exit();
   }
-  
 
   /* Decide if other chroma subsamplings than 4:2:0 are supported */
   if (global.codec->fourcc == AV1_FOURCC) input.only_i420 = 0;
@@ -2413,7 +2432,7 @@ int main(int argc, const char **argv_) {
             init_rate_histogram(&stream->config.cfg, &global.framerate);
       }
     }
-    
+
     FOREACH_STREAM(stream, streams) { setup_pass(stream, &global, pass); }
     FOREACH_STREAM(stream, streams) { 
       stream->encoder.filename=input.filename;
@@ -2438,8 +2457,6 @@ int main(int argc, const char **argv_) {
 
     frame_avail = 1;
     got_data = 0;
-
-
 
     while (frame_avail || got_data) {
       struct aom_usec_timer timer;
@@ -2493,16 +2510,14 @@ int main(int argc, const char **argv_) {
           assert(frame_to_encode->fmt & AOM_IMG_FMT_HIGHBITDEPTH);
           FOREACH_STREAM(stream, streams) {
             if (stream->config.use_16bit_internal)
-            { //stream->encoder.filename = end;
               encode_frame(stream, &global,
-                           frame_avail ? frame_to_encode : NULL, frames_in);}
+                           frame_avail ? frame_to_encode : NULL, frames_in);
             else
               assert(0);
           };
         } else {
           assert((frame_to_encode->fmt & AOM_IMG_FMT_HIGHBITDEPTH) == 0);
           FOREACH_STREAM(stream, streams) {
-            //stream->encoder.filename = end;
             encode_frame(stream, &global, frame_avail ? frame_to_encode : NULL,
                          frames_in);
           }
@@ -2652,4 +2667,3 @@ int main(int argc, const char **argv_) {
   free(streams);
   return res ? EXIT_FAILURE : EXIT_SUCCESS;
 }
-

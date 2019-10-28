@@ -522,4 +522,3 @@ typedef struct cfg_options {
 }
 #endif
 #endif  // AOM_AOM_AOM_CODEC_H_
-
