@@ -253,7 +253,7 @@ frame_number = int(sys.argv[6])
 t1 = time.time()
 prob_64(yuv_file, SAVE_FILE, qp_one_frame, width, height, frame_number, frame_type)
 prob_32(yuv_file, SAVE_FILE, qp_one_frame, width, height, frame_number, frame_type)
-prob_16(yuv_file, SAVE_FILE, qp_one_frame, width, height, frame_number, frame_type)
+#prob_16(yuv_file, SAVE_FILE, qp_one_frame, width, height, frame_number, frame_type)
 t2 = time.time()
 print('--------\n\nPredicting Time: %.3f sec.\n\n--------' % float(t2-t1))
 
