@@ -5,6 +5,10 @@ Detailed description of the concept and implementation can be found here : https
 
 AV1 version: 1.0.0-2231-g9666276
 
+## Performance 
+
+https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/encoding_time_cnn.png
+
 ## Usage 
 
 ### 1.  Clone AOM AV1 from the repo:
