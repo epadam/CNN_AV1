@@ -1,4 +1,4 @@
-# CNN_AV1
+# CNN AV1 Intra Encoder
 A CNN based AV1 intra encoder
 
 Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
@@ -30,11 +30,13 @@ av1/av1_cx_iface.c
 
 av1/encoder/encode_frame.c
 
-### 4.  Build the encoder with cmake and make
+### 4. Follow the instruction to compile the encoder
 
-### 5.  Include the files in CNN folder into the built encoder folder
+https://aomedia.googlesource.com/aom/
+
+### 5.  Copy the files in CNN folder into the built encoder folder
 
 
 NOTE:
 1. Right now it only supports 4:2:0 yuv format (y4m not support) and resolution of 1080p and below. 
-2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future. Also, python models will be ported into C with Tensorflow C API.
+2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future. Also, python models will be ported into C with Tensorflow C API. (For this resason, predictions for 16x16 blocks are not used to avoid encoding fail)
