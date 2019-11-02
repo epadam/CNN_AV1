@@ -12,6 +12,10 @@ AV1 version: 1.0.0-2231-g9666276
 
 ## Usage 
 
+### Prerequisites
+
+Tensorflow
+
 ### 1.  Clone AOM AV1 from the repo:
 
  `git clone https://aomedia.googlesource.com/aom`
