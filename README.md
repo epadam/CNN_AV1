@@ -7,12 +7,12 @@ AV1 version: 1.0.0-2231-g9666276
 
 ## Performance 
 
-QP=120, Using CNN for partition mode prediction for 64x64, 32x32 16x16 blocks
+1080p and 720p QP=120, Using CNN for partition mode prediction for 64x64, 32x32 16x16 blocks
 
 ![performance](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/encoding_time_cnn.png)
 
 
-QP=120, Using CNN for partition mode prediction for 64x64, 32x32 (16x16 disabled)
+4K QP=120, Using CNN for partition mode prediction for 64x64, 32x32 (16x16 disabled)
 ![performance4K](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/img/EncodingTimeComparison.png)
 
 ![performance4K_2](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/img/PSNR(dB)andBits(4K).png)
