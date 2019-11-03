@@ -1,5 +1,5 @@
 # CNN AV1 Intra Encoder
-A CNN based AV1 intra encoder
+A CNN based AV1 intra encoder. This encoder uses CNN for 10 partition modes prediction for AV1 intra encoding.
 
 Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
 
@@ -7,14 +7,15 @@ AV1 version: 1.0.0-2231-g9666276
 
 ## Performance 
 
-1080p and 720p QP=120, Using CNN for partition mode prediction for 64x64, 32x32 16x16 blocks
-
+Encoding Time Comparison (1080p and 720p)
+QP=120,1 thread (prediction for 64x64, 32x32 16x16 blocks)
 ![performance](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/encoding_time_cnn.png)
 
-
-4K QP=120, Using CNN for partition mode prediction for 64x64, 32x32 (16x16 disabled)
+Encoding Time Comparison (4K)
+QP=120, 1 threads, (prediction for 64x64, 32x32, 16x16 disabled)
 ![performance4K](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/EncodingTimeComparison.png)
 
+PSNR and File Size Comparison (4K)
 ![performance4K_2](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/PSNR(dB)andBits(4K).png)
 
 
