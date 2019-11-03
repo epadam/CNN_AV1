@@ -7,6 +7,8 @@ AV1 version: 1.0.0-2231-g9666276
 
 ## Performance 
 
+QP=120
+
 ![performance](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/encoding_time_cnn.png)
 
 
@@ -47,5 +49,5 @@ https://aomedia.googlesource.com/aom/
 
 
 NOTE:
-1. Right now it only supports 4:2:0 yuv format (y4m not support) and resolution of 1080p and below. 
-2. For resolution of 1080p and above, encoder sometimes crash. This may be because some predicted partition modes violate the rules in the encoder. This issue will be solved in the future. Also, python models will be ported into C with Tensorflow C API. (For this resason, predictions for 16x16 blocks are not used to avoid encoding fail)
+1. Right now it only supports 4:2:0 yuv format and the models are only trained with QP=120 at the moment.  
+2. Predictions for 16x16 blocks are disabled to avoid encoding fail temporally. (This may be because some predicted partition modes cause overflow in the transform step. This issue will be solved in the future.
