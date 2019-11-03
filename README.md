@@ -9,7 +9,7 @@ AV1 version: 1.0.0-2231-g9666276
 
 Encoding time comparison (1080p and 720p)
 
-QP=120,1 thread (prediction for 64x64, 32x32 16x16 blocks)
+QP=120,1 thread (prediction for 64x64, 32x32, 16x16 blocks)
 ![performance](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/encoding_time_cnn.png)
 
 Encoding time comparison (4K)
