@@ -14,11 +14,6 @@ QP=120, 1 thread (prediction for 64x64, 32x32, 16x16 blocks)
 
 Encoding time comparison (4K)
 
-QP=120, 1 thread, (prediction for 64x64, 32x32, 16x16 disabled)
-![performance4K](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/EncodingTimeComparison.png)
-
-PSNR and file size comparison (4K)
-![performance4K_2](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/PSNR(dB)andBits(4K).png)
 
 
 
