@@ -20,11 +20,15 @@ QP=120, 1 thread, (prediction for 64x64, 32x32, 16x16 disabled)
 PSNR and file size comparison (4K)
 ![PSNR](https://cnn-av1-intra-encoder.readthedocs.io/en/latest/_images/PSNR4K.png)
 
+### Training with mix QPs
 
-| Video Frame   | Resolution | BD-PSNR(dB) | BD-BR(%) | Time Savings(%)                                           |
-|               |            |             |          |-----------------------------------------------------------|
-|               |            |             |          | QP=22           | QP=33       | QP=41       | QP=50       |
+A dataset with mix QP (20, 40, 60, 80, 100, 120, 140 ,160, 180, 200) is also used to train the model.
+
+The BD-PSNR and BD-BR is shown in the Table.
+
+| Video Frame   | Resolution | BD-PSNR(dB) | BD-BR(%) | Time Savings(%) |             |             |             |
 |---------------|------------|-------------|----------|-----------------|-------------|-------------|-------------|
+|               |            |             |          | QP=22           | QP=33       | QP=41       | QP=50       |
 | ShakeNDry     | 3840x2160  | -0.09043    | 3.788524 | 75.74163998     | 70.4177131  | 64.58796924 | 54.12158889 |
 | YachtRide     | 3840x2160  | -0.22829    | 6.547402 | 59.31081768     | 52.97428892 | 47.53542568 | 33.6477623  |
 | ReadySteadyGo | 3840x2160  | -0.20656    | 5.920892 | 58.39904588     | 65.99000052 | 63.97389648 | 57.60417505 |
