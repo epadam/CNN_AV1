@@ -3,6 +3,8 @@ A CNN based AV1 intra encoder. This encoder uses CNN for 10 partition modes pred
 
 Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
 
+Dataset Link: http://www.mediafire.com/folder/gsg1rom82enk1,q53dvilzsxqub,p7t6pb2pyab39,rhokuo26p6bjw,6v62mfqc4kzn9/shared
+
 AV1 version: 1.0.0-2231-g9666276
 
 ## Performance 
