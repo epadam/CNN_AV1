@@ -2,7 +2,9 @@
 
 ### Data Collection
 
-1. Replace encodeframe.c in the original encoder source file. After encoding a video frame, a txt file with partition modes of each 64x64, 32x32, 16x16 blocks is saved.
+1. Replace encodeframe.c in the original encoder source file. After encoding a video frame, a txt file with partition modes of each 64x64, 32x32, 16x16 blocks is saved. The format is showing below:
+ex:
+0 0 9 4 8 3 120
 
 | Frame Type           | Frame Number                | Block Size<br>(index)    | Row                   | col                  | Partition Mode                                                                                            | QP    |
 |----------------------|-----------------------------|--------------------------|-----------------------|----------------------|-----------------------------------------------------------------------------------------------------------|-------|
