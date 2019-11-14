@@ -14,6 +14,6 @@
 
 4. Repeat the steps above for extracting all the partition modes from the encoder.
 
-5: Use merge_sample.py and generate_label_qp.py to merge all the samples and generate the full dataset.
+5. Use merge_sample.py and generate_label_qp.py to merge all the samples and generate the full dataset.
 
 6. Use shuffle.py to shuffle the dataset.
