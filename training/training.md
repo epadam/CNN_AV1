@@ -1,0 +1,3 @@
+## Training Process
+
+### Data Collection
