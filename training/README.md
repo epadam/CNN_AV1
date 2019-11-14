@@ -21,3 +21,8 @@ ex:
 5. Use merge_sample.py and generate_label_qp.py to merge all the samples and generate the full dataset.
 
 6. Use shuffle.py to shuffle the dataset.
+
+### training
+
+Please use the following notebook:
+https://colab.research.google.com/github/epadam/CNN_AV1/blob/master/training/training.ipynb
