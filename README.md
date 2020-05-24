@@ -1,4 +1,7 @@
 # CNN AV1 Intra Encoder
+
+This is my master thesis at TU Dresden.
+
 A CNN based AV1 intra encoder. This encoder uses CNN for 10 partition modes prediction for AV1 intra encoding.
 
 Detailed description of the concept and implementation can be found here : https://cnn-av1-intra-encoder.readthedocs.io/en/latest/index.html
