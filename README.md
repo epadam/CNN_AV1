@@ -1,6 +1,6 @@
 # CNN AV1 Intra Encoder
 
-This is my master thesis at TU Dresden.
+This is my master thesis at Deutsche Telekom Chair of Communication Networks, TU Dresden.
 
 A CNN based AV1 intra encoder. This encoder uses CNN for 10 partition modes prediction for AV1 intra encoding.
 
